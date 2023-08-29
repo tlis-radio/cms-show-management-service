@@ -1,0 +1,9 @@
+apiVersion: v2
+name: cms-show-management
+version: 1.0.0
+description: Cms show managemet
+type: application
+keywords:
+  - cms
+  - show-management
+home: www.tlis.sk
