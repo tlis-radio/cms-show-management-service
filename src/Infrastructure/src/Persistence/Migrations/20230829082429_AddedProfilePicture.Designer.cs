@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Tlis.Cms.ShowManagement.Infrastructure.Persistence;
@@ -12,9 +13,11 @@ using Tlis.Cms.ShowManagement.Infrastructure.Persistence;
 namespace Tlis.Cms.ShowManagement.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(ShowManagementDbContext))]
-    partial class ShowManagementDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230829082429_AddedProfilePicture")]
+    partial class AddedProfilePicture
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

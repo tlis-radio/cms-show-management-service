@@ -36,5 +36,8 @@ public class ShowEntityConfiguration : IEntityTypeConfiguration<Show>
         builder
             .Property(x => x.CreatedDate)
             .IsRequired();
+
+        builder
+            .Property(x => x.ProfileImageUrl);
     }
 }

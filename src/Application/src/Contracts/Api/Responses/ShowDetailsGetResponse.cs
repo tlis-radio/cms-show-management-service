@@ -17,4 +17,6 @@ public class ShowDetailsGetResponse
     public IList<Guid> ModeratorIds { get; set; } = new List<Guid>();
 
     public DateOnly CreatedDate { get; set; }
+
+    public string? ProfileImageUrl { get; set; }
 }

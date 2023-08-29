@@ -13,4 +13,6 @@ public sealed class Show : BaseEntity
     public List<Guid> ModeratorIds { get; set; } = new List<Guid>();
 
     public DateOnly CreatedDate { get; set; }
+
+    public string? ProfileImageUrl { get; set; }
 }
