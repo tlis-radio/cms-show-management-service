@@ -5,10 +5,9 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Tlis.Cms.ShowManagement.Domain.Entities.Base;
-using Tlis.Cms.ShowManagement.Infrastructure.Persistence;
 using Tlis.Cms.ShowManagement.Infrastructure.Persistence.Repositories.Interfaces;
 
-namespace Tlis.Cms.UserManagement.Infrastructure.Persistence.Repositories;
+namespace Tlis.Cms.ShowManagement.Infrastructure.Persistence.Repositories;
 
 internal abstract class GenericRepository<TEntity> : IGenericRepository<TEntity>
     where TEntity : BaseEntity

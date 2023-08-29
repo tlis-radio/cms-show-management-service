@@ -6,11 +6,17 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Tlis.Cms.ShowManagement.Infrastructure.Exceptions;
 using Tlis.Cms.ShowManagement.Infrastructure.Persistence.Interfaces;
+using Tlis.Cms.ShowManagement.Infrastructure.Persistence.Repositories;
+using Tlis.Cms.ShowManagement.Infrastructure.Persistence.Repositories.Interfaces;
 
 namespace Tlis.Cms.ShowManagement.Infrastructure.Persistence;
 
 public class UnitOfWork : IDisposable, IUnitOfWork
 {
+    public IShowRepository ShowRepository => _lazyShowRepository.Value;
+    
+    private readonly Lazy<IShowRepository> _lazyShowRepository;
+
     private bool _disposed;
 
     private readonly ILogger<UnitOfWork> _logger;
@@ -21,6 +27,7 @@ public class UnitOfWork : IDisposable, IUnitOfWork
     {
         _dbContext = dbContext;
         _logger = logger;
+        _lazyShowRepository = new(() => new ShowRepository(_dbContext));
     }
 
     public void SetStateUnchanged<TEntity>(params TEntity[] entities) where TEntity : class

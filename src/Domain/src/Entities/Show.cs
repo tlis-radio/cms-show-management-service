@@ -10,7 +10,7 @@ public sealed class Show : BaseEntity
 
     public string Description { get; set; } = null!;
 
-    public IList<Guid> ModeratorIds { get; set; } = new List<Guid>();
+    public List<Guid> ModeratorIds { get; set; } = new List<Guid>();
 
     public DateOnly CreatedDate { get; set; }
 }

@@ -4,27 +4,32 @@ using MediatR;
 using Tlis.Cms.ShowManagement.Application.Contracts.Api.Requests;
 using Tlis.Cms.ShowManagement.Application.Contracts.Api.Responses;
 using Tlis.Cms.ShowManagement.Application.Mappers;
+using Tlis.Cms.ShowManagement.Infrastructure.Persistence.Interfaces;
 
 namespace Tlis.Cms.ShowManagement.Application.RequestHandlers;
 
 internal sealed class ShowCreateRequestHandler : IRequestHandler<ShowCreateRequest, BaseCreateResponse>
 {
+    private readonly IUnitOfWork _unitOfWork;
+
     private readonly ShowMapper _mapper;
 
-    public ShowCreateRequestHandler(ShowMapper mapper)
+    public ShowCreateRequestHandler(IUnitOfWork unitOfWork, ShowMapper mapper)
     {
+        _unitOfWork = unitOfWork;
         _mapper = mapper;
     }
 
-    public Task<BaseCreateResponse> Handle(ShowCreateRequest request, CancellationToken cancellationToken)
+    public async Task<BaseCreateResponse> Handle(ShowCreateRequest request, CancellationToken cancellationToken)
     {
         var showToCreate = _mapper.ToEntity(request);
 
-        // TODO: save to Db
+        await _unitOfWork.ShowRepository.InsertAsync(showToCreate);
+        await _unitOfWork.SaveChangesAsync();
 
-        return Task.FromResult(new BaseCreateResponse
+        return new BaseCreateResponse
         {
             Id = showToCreate.Id
-        });
+        };
     }
 }

@@ -4,22 +4,26 @@ using MediatR;
 using Tlis.Cms.ShowManagement.Application.Contracts.Api.Requests;
 using Tlis.Cms.ShowManagement.Application.Contracts.Api.Responses;
 using Tlis.Cms.ShowManagement.Application.Mappers;
+using Tlis.Cms.ShowManagement.Infrastructure.Persistence.Interfaces;
 
 namespace Tlis.Cms.ShowManagement.Application.RequestHandlers;
 
-internal sealed class ShowDetailsGetRequestHandler : IRequestHandler<ShowDetailsGetRequest, ShowDetailsGetResponse>
+internal sealed class ShowDetailsGetRequestHandler : IRequestHandler<ShowDetailsGetRequest, ShowDetailsGetResponse?>
 {
+    private readonly IUnitOfWork _unitOfWork;
+
     private readonly ShowMapper _mapper;
 
-    public ShowDetailsGetRequestHandler(ShowMapper mapper)
+    public ShowDetailsGetRequestHandler(IUnitOfWork unitOfWork, ShowMapper mapper)
     {
+        _unitOfWork = unitOfWork;
         _mapper = mapper;
     }
 
-    public Task<ShowDetailsGetResponse> Handle(ShowDetailsGetRequest request, CancellationToken cancellationToken)
+    public async Task<ShowDetailsGetResponse?> Handle(ShowDetailsGetRequest request, CancellationToken cancellationToken)
     {
-        // TODO: get from Db
+        var show = await _unitOfWork.ShowRepository.GetByIdAsync(request.Id, false);
 
-        return Task.FromResult(new ShowDetailsGetResponse());
+        return show is null ? null : _mapper.ToDto(show);
     }
 }

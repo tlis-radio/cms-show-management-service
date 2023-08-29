@@ -13,6 +13,10 @@ public class ShowEntityConfiguration : IEntityTypeConfiguration<Show>
         builder.Property(x => x.Id).ValueGeneratedOnAdd().HasValueGenerator((_, _) => new GuidValueGenerator());
 
         builder
+            .HasIndex(x => x.Name)
+            .IsUnique();
+
+        builder
             .Property(x => x.Id)
             .IsRequired()
             .ValueGeneratedOnAdd();
