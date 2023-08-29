@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tlis.Cms.ShowManagement.Inf
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{C4425949-DB55-41C9-B59C-B7C788C4E5AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tlis.CMS.ShowManagement.Api", "src\Api\src\Tlis.CMS.ShowManagement.Api.csproj", "{1407A905-7A4B-4559-A2E6-9B557053DED1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tlis.Cms.ShowManagement.Api", "src\Api\src\Tlis.Cms.ShowManagement.Api.csproj", "{1407A905-7A4B-4559-A2E6-9B557053DED1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
