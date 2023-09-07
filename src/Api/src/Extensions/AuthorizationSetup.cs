@@ -19,6 +19,7 @@ public static class AuthorizationSetup
             {
                 options.Authority = configuration.GetSection("Jwt").GetValue<string>("Authority");
                 options.Audience = configuration.GetSection("Jwt").GetValue<string>("Audience");
+                options.RequireHttpsMetadata = configuration.GetSection("Jwt").GetValue<bool>("RequireHttpsMetadata");
                 options.SaveToken = true;
             });
         

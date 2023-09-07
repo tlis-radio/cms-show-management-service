@@ -9,5 +9,6 @@ config:
   jwt:
     audience: ""
     authority: ""
+    requireHttpsMetadata: true
   serviceUrls:
     storageAccount: ""

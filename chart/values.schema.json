@@ -32,6 +32,9 @@
             },
             "authority": {
               "type": "string"
+            },
+            "requireHttpsMetadata": {
+              "type": "boolean"
             }
           }
         },
