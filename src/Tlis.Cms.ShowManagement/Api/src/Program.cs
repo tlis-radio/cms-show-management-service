@@ -17,6 +17,9 @@ namespace Tlis.Cms.ShowManagement.Api
             builder.Services.ConfigureSwagger();
             builder.Services.ConfigureAuthorization(builder.Configuration);
 
+            builder.Logging.ConfigureOtel(builder.Configuration);
+            builder.Services.ConfigureOtel(builder.Configuration);
+
             builder.Services.AddApplication();
             builder.Services.AddInfrastructure(builder.Configuration);
 

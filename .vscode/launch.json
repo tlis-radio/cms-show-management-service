@@ -5,11 +5,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": ".NET Core Launch (web)",
+            "name": "Run Webapi",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/src/Api/src/bin/Debug/net7.0/Tlis.CMS.ShowManagement.Api.dll",
+            "program": "${workspaceFolder}/src/Api/src/bin/Debug/net8.0/Tlis.CMS.ShowManagement.Api.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/Api/src",
             "stopAtEntry": false,
@@ -25,9 +25,20 @@
             }
         },
         {
-            "name": ".NET Core Attach",
+            "name": "Cli apply migrations",
             "type": "coreclr",
-            "request": "attach"
+            "request": "launch",
+            "preLaunchTask": "build-cli",
+            "program": "${workspaceFolder}/src/Tlis.Cms.ShowManagement.Cli/bin/Debug/net8.0/Tlis.Cms.ShowManagement.Cli.dll",
+            "args": ["migration"],
+            "cwd": "${workspaceFolder}/src/Tlis.Cms.ShowManagement.Cli",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
         }
     ]
 }

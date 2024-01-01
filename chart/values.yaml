@@ -12,3 +12,5 @@ config:
     requireHttpsMetadata: true
   serviceUrls:
     storageAccount: ""
+  otel:
+    collectorEndpoint: ""

@@ -45,6 +45,14 @@
               "type": "string"
             }
           }
+        },
+        "otel": {
+          "type": "object",
+          "properties": {
+            "collectorEndpoint": {
+              "type": "string"
+            }
+          }
         }
       }
     }

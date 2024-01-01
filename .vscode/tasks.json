@@ -14,26 +14,14 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "publish",
+            "label": "build-cli",
             "command": "dotnet",
             "type": "process",
             "args": [
-                "publish",
-                "${workspaceFolder}/Tlis.Cms.ShowManagement.sln",
+                "build",
+                "${workspaceFolder}/src/Tlis.Cms.ShowManagement.Cli/Tlis.Cms.ShowManagement.Cli.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "watch",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "watch",
-                "run",
-                "--project",
-                "${workspaceFolder}/Tlis.Cms.ShowManagement.sln"
             ],
             "problemMatcher": "$msCompile"
         }
