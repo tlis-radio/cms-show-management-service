@@ -21,14 +21,14 @@ RUN dotnet publish -c Release -o /out/cli
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 
-# Copy Api
-
-WORKDIR /app
-COPY --from=build-env /out/api .
-
 # Copy Cli
 
 WORKDIR /cli
 COPY --from=build-env /out/cli .
+
+# Copy Api
+
+WORKDIR /app
+COPY --from=build-env /out/api .
 
 ENTRYPOINT [ "dotnet", "Tlis.Cms.ShowManagement.Api.dll" ]
