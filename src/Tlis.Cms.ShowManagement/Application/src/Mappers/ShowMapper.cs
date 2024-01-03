@@ -9,6 +9,8 @@ namespace Tlis.Cms.ShowManagement.Application.Mappers;
 [Mapper]
 public partial class ShowMapper
 {
+    public partial ShowPaginationGetResponse ToPaginationDto(Show entity);
+
     public partial ShowDetailsGetResponse ToDto(Show entity);
 
     public Show ToEntity(ShowCreateRequest request)

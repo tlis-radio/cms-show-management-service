@@ -21,7 +21,7 @@ internal sealed class ShowCreateRequestHandler : IRequestHandler<ShowCreateReque
     }
 
     public async Task<BaseCreateResponse> Handle(ShowCreateRequest request, CancellationToken cancellationToken)
-    {
+    {   
         var showToCreate = _mapper.ToEntity(request);
 
         await _unitOfWork.ShowRepository.InsertAsync(showToCreate);

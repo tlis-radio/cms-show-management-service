@@ -27,6 +27,6 @@ data:
             "StorageAccount": {{ .Values.config.serviceUrls.storageAccount | quote }}
         },
         "Otel": {
-            "CollectorEndpoint": {{ .Values.config.otel.collectorEndpoint }}
+            "CollectorEndpoint": {{ .Values.config.otel.collectorEndpoint | quote }}
         }
     }

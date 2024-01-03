@@ -30,6 +30,16 @@ public sealed class ShowController : BaseController
     public ValueTask<ActionResult<ShowDetailsGetResponse>> GetShowDetails([FromRoute] Guid id)
         => HandleGet(new ShowDetailsGetRequest { Id = id });
 
+    [HttpGet("pagination")]
+    [AllowAnonymous]
+    [Produces(MediaTypeNames.Application.Json)]
+    [ProducesResponseType(typeof(PaginationResponse<ShowPaginationGetResponse>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+    [SwaggerOperation("Paging show's")]
+    public ValueTask<ActionResult<PaginationResponse<ShowPaginationGetResponse>>> Pagination([FromQuery] ShowPaginationGetRequest request)
+        => HandleGet(request);
+
     [HttpPost]
     [Authorize(Policy.ShowWrite)]
     [Produces(MediaTypeNames.Application.Json)]
