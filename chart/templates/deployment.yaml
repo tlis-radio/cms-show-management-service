@@ -29,6 +29,12 @@ spec:
           env:
             - name: ASPNETCORE_URLS
               value: http://+:80
+            - name: OTEL_EXPORTER_OTLP_PROTOCOL
+              value: {{ .Values.config.otel.protocol }}
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: {{ .Values.config.otel.endpoint }}
+            - name: OTEL_EXPORTER_OTLP_HEADERS
+              value: {{ .Values.config.otel.headers }}
       {{ if .Values.spec.imagePullSecrets }}
       imagePullSecrets:
         - name: {{ .Values.spec.imagePullSecrets | quote }}

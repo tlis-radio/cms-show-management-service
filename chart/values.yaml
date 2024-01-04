@@ -13,4 +13,6 @@ config:
   serviceUrls:
     storageAccount: ""
   otel:
-    collectorEndpoint: ""
+    protocol: ""
+    endpoint: ""
+    headers: ""
