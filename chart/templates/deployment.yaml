@@ -35,8 +35,6 @@ spec:
               value: {{ .Values.config.otel.endpoint }}
             - name: OTEL_EXPORTER_OTLP_HEADERS
               value: {{ .Values.config.otel.headers }}
-      nodeSelector:
-        agentpool: buffedpoll
       {{ if .Values.spec.imagePullSecrets }}
       imagePullSecrets:
         - name: {{ .Values.spec.imagePullSecrets | quote }}
