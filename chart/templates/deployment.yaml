@@ -21,7 +21,10 @@ spec:
           imagePullPolicy: IfNotPresent
           volumeMounts:
           - mountPath: /app/appsettings.json
-            name: config
+            name: app-config
+            subPath: appsettings.json
+          - mountPath: /cli/appsettings.json
+            name: cli-config
             subPath: appsettings.json
           ports:
             - containerPort: 80
@@ -40,6 +43,9 @@ spec:
         - name: {{ .Values.spec.imagePullSecrets | quote }}
       {{ end }}
       volumes:
-      - name: config
+      - name: app-config
+        configMap:
+          name: {{ .Release.Name }}
+      - name: cli-config
         configMap:
           name: {{ .Release.Name }}
