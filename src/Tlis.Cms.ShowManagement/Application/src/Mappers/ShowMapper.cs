@@ -24,6 +24,6 @@ public partial class ShowMapper
 
     [MapperIgnoreTarget(nameof(Show.Id))]
     [MapperIgnoreTarget(nameof(Show.CreatedDate))]
-    [MapperIgnoreTarget(nameof(Show.ProfileImageUrl))]
+    [MapperIgnoreTarget(nameof(Show.ProfileImageId))]
     private partial Show MapToEntity(ShowCreateRequest request);
 }

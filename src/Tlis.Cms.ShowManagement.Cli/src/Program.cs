@@ -56,7 +56,11 @@ public class Program
             options =>
             {
                 options
-                    .UseNpgsql(configuration.GetConnectionString("Postgres"))
+                    .UseNpgsql(
+                        configuration.GetConnectionString("Postgres"),
+                        x => x.MigrationsHistoryTable(
+                            Microsoft.EntityFrameworkCore.Migrations.HistoryRepository.DefaultTableName, 
+                            "cms_show_management"))
                     .UseSnakeCaseNamingConvention();
             },
             contextLifetime: ServiceLifetime.Transient,

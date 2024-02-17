@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using Tlis.Cms.ShowManagement.Api.Constants;
-using Tlis.Cms.ShowManagement.Api.Controllers.Attributes;
 using Tlis.Cms.ShowManagement.Application.Contracts.Api.Requests;
 using Tlis.Cms.ShowManagement.Application.Contracts.Api.Responses;
 
@@ -13,12 +12,8 @@ namespace Tlis.Cms.ShowManagement.Api.Controllers.Base;
 
 [ApiController]
 [Route("[controller]")]
-public sealed class ShowController : BaseController
+public sealed class ShowController(IMediator mediator) : BaseController(mediator)
 {
-    public ShowController(IMediator mediator) : base(mediator)
-    {
-    }
-
     [HttpGet("{id:guid}")]
     [Authorize(Policy.ShowRead)]
     [Produces(MediaTypeNames.Application.Json)]
@@ -74,18 +69,4 @@ public sealed class ShowController : BaseController
     [SwaggerOperation("Delete show")]
     public ValueTask<ActionResult> DeleteShow([FromRoute] Guid id)
         => HandleDelete(new ShowDeleteRequest { Id = id });
-
-    [HttpPost("{id:guid}/profile-image")]
-    [Authorize(Policy.ShowWrite)]
-    [RequestSizeLimit(5000000)]
-    [FormFileContentTypeFilter(ContentType = "image/jpeg,image/png")]
-    [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-    [SwaggerOperation("Upload show's profile image.",
-        "If user already has an image current profile image will be deleted and replaced with this new image. Maximal allowed size is 5 Megabyte.")]
-    public ValueTask<ActionResult<BaseCreateResponse>> UploadProfileImage([FromRoute] Guid id, IFormFile image)
-        => HandlePost(new ShowProfileImageUploadRequest { Id = id, Image = image });
 }

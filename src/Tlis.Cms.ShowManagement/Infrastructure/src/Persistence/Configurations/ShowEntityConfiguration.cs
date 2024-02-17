@@ -12,32 +12,12 @@ public class ShowEntityConfiguration : IEntityTypeConfiguration<Show>
         builder.HasKey(x => x.Id);
         builder.Property(x => x.Id).ValueGeneratedOnAdd().HasValueGenerator((_, _) => new GuidValueGenerator());
 
-        builder
-            .HasIndex(x => x.Name)
-            .IsUnique();
+        builder.HasIndex(x => x.Name).IsUnique();
 
-        builder
-            .Property(x => x.Id)
-            .IsRequired()
-            .ValueGeneratedOnAdd();
-
-        builder
-            .Property(x => x.Name)
-            .IsRequired();
-
-        builder
-            .Property(x => x.Description)
-            .IsRequired();
-
-        builder
-            .Property(x => x.ModeratorIds)
-            .IsRequired();
-
-        builder
-            .Property(x => x.CreatedDate)
-            .IsRequired();
-
-        builder
-            .Property(x => x.ProfileImageUrl);
+        builder.Property(x => x.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Property(x => x.Name).IsRequired();
+        builder.Property(x => x.Description).IsRequired();
+        builder.Property(x => x.ModeratorIds).IsRequired();
+        builder.Property(x => x.CreatedDate).IsRequired();
     }
 }

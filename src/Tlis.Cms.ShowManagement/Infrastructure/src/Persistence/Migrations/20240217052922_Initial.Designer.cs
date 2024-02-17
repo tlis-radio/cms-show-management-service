@@ -13,8 +13,8 @@ using Tlis.Cms.ShowManagement.Infrastructure.Persistence;
 namespace Tlis.Cms.ShowManagement.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(ShowManagementDbContext))]
-    [Migration("20230829075608_Init")]
-    partial class Init
+    [Migration("20240217052922_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -22,7 +22,7 @@ namespace Tlis.Cms.ShowManagement.Infrastructure.Persistence.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("cms_show_management")
-                .HasAnnotation("ProductVersion", "7.0.10")
+                .HasAnnotation("ProductVersion", "8.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -52,6 +52,10 @@ namespace Tlis.Cms.ShowManagement.Infrastructure.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("name");
+
+                    b.Property<Guid?>("ProfileImageId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("profile_image_id");
 
                     b.HasKey("Id")
                         .HasName("pk_show");

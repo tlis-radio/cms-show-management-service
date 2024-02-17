@@ -23,7 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tlis.Cms.ShowManagement.Infrastructure", "src\Tlis.Cms.ShowManagement\Infrastructure\src\Tlis.Cms.ShowManagement.Infrastructure.csproj", "{BF827883-20F1-424F-88F9-DBD1F89CCCB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tlis.Cms.ShowManagement.Cli", "src\Tlis.Cms.ShowManagement.Cli\Tlis.Cms.ShowManagement.Cli.csproj", "{C6018BF7-4E38-4D2E-A18F-90522DE2A413}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tlis.Cms.ShowManagement.Cli", "src\Tlis.Cms.ShowManagement.Cli\src\Tlis.Cms.ShowManagement.Cli.csproj", "{C6018BF7-4E38-4D2E-A18F-90522DE2A413}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{CEB51FAA-CA76-472A-87CB-DBCACF2CB318}"
 EndProject

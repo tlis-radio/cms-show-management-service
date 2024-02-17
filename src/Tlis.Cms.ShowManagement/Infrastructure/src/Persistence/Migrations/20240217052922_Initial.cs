@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Tlis.Cms.ShowManagement.Infrastructure.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -24,7 +24,8 @@ namespace Tlis.Cms.ShowManagement.Infrastructure.Persistence.Migrations
                     name = table.Column<string>(type: "text", nullable: false),
                     description = table.Column<string>(type: "text", nullable: false),
                     moderator_ids = table.Column<List<Guid>>(type: "uuid[]", nullable: false),
-                    created_date = table.Column<DateOnly>(type: "date", nullable: false)
+                    created_date = table.Column<DateOnly>(type: "date", nullable: false),
+                    profile_image_id = table.Column<Guid>(type: "uuid", nullable: true)
                 },
                 constraints: table =>
                 {

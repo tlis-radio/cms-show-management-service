@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../Tlis.Cms.ShowManagement/Infrastructure/src/Tlis.Cms.ShowManagement.Infrastructure.csproj" />
+    <ProjectReference Include="../../Tlis.Cms.ShowManagement/Infrastructure/src/Tlis.Cms.ShowManagement.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

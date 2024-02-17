@@ -5,14 +5,9 @@ using Tlis.Cms.ShowManagement.Infrastructure.Persistence.Interfaces;
 
 namespace Tlis.Cms.ShowManagement.Infrastructure.Persistence;
 
-public class ShowManagementDbContext : DbContext, IShowManagementDbContext
+public class ShowManagementDbContext(DbContextOptions options) : DbContext(options), IShowManagementDbContext
 {
     public DbSet<Show> Show { get; set; } = null!;
-
-    public ShowManagementDbContext(DbContextOptions options)
-        : base(options)
-    {
-    }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

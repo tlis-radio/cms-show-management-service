@@ -9,18 +9,13 @@ using Tlis.Cms.ShowManagement.Infrastructure.Persistence.Repositories.Interfaces
 
 namespace Tlis.Cms.ShowManagement.Infrastructure.Persistence.Repositories;
 
-internal abstract class GenericRepository<TEntity> : IGenericRepository<TEntity>
+internal abstract class GenericRepository<TEntity>(ShowManagementDbContext context)
+    : IGenericRepository<TEntity>
     where TEntity : BaseEntity
 {
-    protected readonly DbSet<TEntity> DbSet;
+    protected readonly DbSet<TEntity> DbSet = context.Set<TEntity>();
 
-    protected readonly ShowManagementDbContext context;
-
-    public GenericRepository(ShowManagementDbContext context)
-    {
-        DbSet = context.Set<TEntity>();
-        this.context = context;
-    }
+    protected readonly ShowManagementDbContext context = context;
 
     public Task<TEntity?> GetByIdAsync(Guid id, bool asTracking)
     {

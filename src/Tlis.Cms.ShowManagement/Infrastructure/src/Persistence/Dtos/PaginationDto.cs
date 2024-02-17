@@ -14,5 +14,5 @@ public class PaginationDto<TEntity> where TEntity : BaseEntity
     
     public int TotalPages => Limit > 0 ? (int)Math.Ceiling((double)Total / Limit) : 0;
 
-    public IList<TEntity> Results { get; set; } = new List<TEntity>();
+    public List<TEntity> Results { get; set; } = [];
 }

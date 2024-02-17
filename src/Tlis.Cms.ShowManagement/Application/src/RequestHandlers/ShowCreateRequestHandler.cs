@@ -8,28 +8,18 @@ using Tlis.Cms.ShowManagement.Infrastructure.Persistence.Interfaces;
 
 namespace Tlis.Cms.ShowManagement.Application.RequestHandlers;
 
-internal sealed class ShowCreateRequestHandler : IRequestHandler<ShowCreateRequest, BaseCreateResponse>
+internal sealed class ShowCreateRequestHandler(IUnitOfWork unitOfWork, ShowMapper mapper) : IRequestHandler<ShowCreateRequest, BaseCreateResponse>
 {
-    private readonly IUnitOfWork _unitOfWork;
-
-    private readonly ShowMapper _mapper;
-
-    public ShowCreateRequestHandler(IUnitOfWork unitOfWork, ShowMapper mapper)
-    {
-        _unitOfWork = unitOfWork;
-        _mapper = mapper;
-    }
-
     public async Task<BaseCreateResponse> Handle(ShowCreateRequest request, CancellationToken cancellationToken)
     {   
-        var showToCreate = _mapper.ToEntity(request);
+        var toCreate = mapper.ToEntity(request);
 
-        await _unitOfWork.ShowRepository.InsertAsync(showToCreate);
-        await _unitOfWork.SaveChangesAsync();
+        await unitOfWork.ShowRepository.InsertAsync(toCreate);
+        await unitOfWork.SaveChangesAsync();
 
         return new BaseCreateResponse
         {
-            Id = showToCreate.Id
+            Id = toCreate.Id
         };
     }
 }

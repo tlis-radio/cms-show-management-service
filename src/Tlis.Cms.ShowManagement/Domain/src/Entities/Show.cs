@@ -10,9 +10,9 @@ public sealed class Show : BaseEntity
 
     public string Description { get; set; } = null!;
 
-    public List<Guid> ModeratorIds { get; set; } = new List<Guid>();
+    public List<Guid> ModeratorIds { get; set; } = [];
 
     public DateOnly CreatedDate { get; set; }
 
-    public string? ProfileImageUrl { get; set; }
+    public Guid? ProfileImageId { get; set; }
 }

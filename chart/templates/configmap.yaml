@@ -15,15 +15,11 @@ data:
             }
         },
         "ConnectionStrings": {
-            "Postgres": {{ .Values.config.connectionStrings.postgres | quote }},
-            "StorageAccount": {{ .Values.config.connectionStrings.storageAccount | quote }}
+            "Postgres": {{ .Values.config.connectionStrings.postgres | quote }}
         },
         "Jwt": {
             "Audience": {{ .Values.config.jwt.audience | quote }},
             "Authority": {{ .Values.config.jwt.authority | quote }},
             "RequireHttpsMetadata": {{ .Values.config.jwt.requireHttpsMetadata }}
-        },
-        "ServiceUrls": {
-            "StorageAccount": {{ .Values.config.serviceUrls.storageAccount | quote }}
         }
     }

@@ -8,22 +8,13 @@ using Tlis.Cms.ShowManagement.Infrastructure.Persistence.Interfaces;
 
 namespace Tlis.Cms.ShowManagement.Application.RequestHandlers;
 
-internal sealed class ShowDetailsGetRequestHandler : IRequestHandler<ShowDetailsGetRequest, ShowDetailsGetResponse?>
+internal sealed class ShowDetailsGetRequestHandler(IUnitOfWork unitOfWork, ShowMapper mapper)
+    : IRequestHandler<ShowDetailsGetRequest, ShowDetailsGetResponse?>
 {
-    private readonly IUnitOfWork _unitOfWork;
-
-    private readonly ShowMapper _mapper;
-
-    public ShowDetailsGetRequestHandler(IUnitOfWork unitOfWork, ShowMapper mapper)
-    {
-        _unitOfWork = unitOfWork;
-        _mapper = mapper;
-    }
-
     public async Task<ShowDetailsGetResponse?> Handle(ShowDetailsGetRequest request, CancellationToken cancellationToken)
     {
-        var show = await _unitOfWork.ShowRepository.GetByIdAsync(request.Id, false);
+        var show = await unitOfWork.ShowRepository.GetByIdAsync(request.Id, false);
 
-        return show is null ? null : _mapper.ToDto(show);
+        return show is null ? null : mapper.ToDto(show);
     }
 }

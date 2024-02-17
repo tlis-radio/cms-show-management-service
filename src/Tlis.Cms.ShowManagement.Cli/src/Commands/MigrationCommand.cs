@@ -5,19 +5,12 @@ using Tlis.Cms.ShowManagement.Infrastructure.Persistence;
 
 namespace Tlis.Cms.ShowManagement.Cli.Commands;
 
-public class MigrationCommand : BaseCommand
+public class MigrationCommand(ShowManagementDbContext dbContext, ILogger<MigrationCommand> logger)
+    : BaseCommand("migration", "Run DB migration", logger)
 {
-    private readonly ShowManagementDbContext _dbContext;
-
-    public MigrationCommand(ShowManagementDbContext dbContext, ILogger<MigrationCommand> logger)
-        : base("migration", "Run DB migration", logger)
-    {
-        _dbContext = dbContext;
-    }
-
     protected override async Task TryHandleCommand()
     {
-        var pendingMigrations = await _dbContext.Database.GetPendingMigrationsAsync();
+        var pendingMigrations = await dbContext.Database.GetPendingMigrationsAsync();
 
         if (pendingMigrations.Any())
         {
@@ -25,7 +18,7 @@ public class MigrationCommand : BaseCommand
                 $"Applying migrations: {string.Join(',', pendingMigrations)}"
             );
 
-            await _dbContext.Database.MigrateAsync();
+            await dbContext.Database.MigrateAsync();
         }
         else
         {

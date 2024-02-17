@@ -12,5 +12,5 @@ public class PaginationResponse<T>
 
     public int TotalPages { get; set; }
 
-    public IReadOnlyCollection<T> Results { get; set; } = new List<T>();
+    public IReadOnlyCollection<T> Results { get; set; } = [];
 }

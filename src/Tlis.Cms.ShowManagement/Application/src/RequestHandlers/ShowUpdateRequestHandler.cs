@@ -6,18 +6,12 @@ using Tlis.Cms.ShowManagement.Infrastructure.Persistence.Interfaces;
 
 namespace Tlis.Cms.ShowManagement.Application.RequestHandlers;
 
-internal sealed class UserUpdateRequestHandler : IRequestHandler<ShowUpdateRequest, bool>
+internal sealed class UserUpdateRequestHandler(IUnitOfWork unitOfWork)
+    : IRequestHandler<ShowUpdateRequest, bool>
 {
-    private readonly IUnitOfWork _unitOfWork;
-
-    public UserUpdateRequestHandler(IUnitOfWork unitOfWork)
-    {
-        _unitOfWork = unitOfWork;
-    }
-
     public async Task<bool> Handle(ShowUpdateRequest request, CancellationToken cancellationToken)
     {
-        var toUpdate = await _unitOfWork.ShowRepository.GetByIdAsync(request.Id, true);
+        var toUpdate = await unitOfWork.ShowRepository.GetByIdAsync(request.Id, true);
         if (toUpdate is null)
         {
             return false;
@@ -29,7 +23,7 @@ internal sealed class UserUpdateRequestHandler : IRequestHandler<ShowUpdateReque
         toUpdate.ModeratorIds.Clear();
         toUpdate.ModeratorIds.AddRange(request.ModeratorIds);
 
-        await _unitOfWork.SaveChangesAsync();
+        await unitOfWork.SaveChangesAsync();
 
         return true;
     }
