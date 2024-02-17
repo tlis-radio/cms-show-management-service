@@ -21,10 +21,7 @@ spec:
           imagePullPolicy: IfNotPresent
           volumeMounts:
           - mountPath: /app/appsettings.json
-            name: app-config
-            subPath: appsettings.json
-          - mountPath: /cli/appsettings.json
-            name: cli-config
+            name: config
             subPath: appsettings.json
           ports:
             - containerPort: 80
@@ -38,14 +35,20 @@ spec:
               value: {{ .Values.config.otel.endpoint }}
             - name: OTEL_EXPORTER_OTLP_HEADERS
               value: {{ .Values.config.otel.headers }}
+      initContainers:
+        - name: ef-migration
+          image: tliscr.azurecr.io/cms-show-management-cli:{{ .Chart.AppVersion }}
+          args: ['migration']
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+          - mountPath: /app/appsettings.json
+            name: config
+            subPath: appsettings.json
       {{ if .Values.spec.imagePullSecrets }}
       imagePullSecrets:
         - name: {{ .Values.spec.imagePullSecrets | quote }}
       {{ end }}
       volumes:
-      - name: app-config
-        configMap:
-          name: {{ .Release.Name }}
-      - name: cli-config
+      - name: config
         configMap:
           name: {{ .Release.Name }}
