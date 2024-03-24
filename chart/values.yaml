@@ -5,14 +5,14 @@ spec:
 config:
   connectionStrings:
     postgres: ""
-    storageAccount: ""
   jwt:
     audience: ""
     authority: ""
     requireHttpsMetadata: true
-  serviceUrls:
-    storageAccount: ""
   otel:
     protocol: ""
     endpoint: ""
     headers: ""
+  cmsServices:
+    userManagement:
+      baseAddress: ""

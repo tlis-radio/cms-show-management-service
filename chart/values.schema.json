@@ -18,9 +18,6 @@
           "properties": {
             "postgres": {
               "type": "string"
-            },
-            "storageAccount": {
-              "type": "string"
             }
           }
         },
@@ -38,14 +35,6 @@
             }
           }
         },
-        "serviceUrls": {
-          "type": "object",
-          "properties": {
-            "storageAccount": {
-              "type": "string"
-            }
-          }
-        },
         "otel": {
           "type": "object",
           "properties": {
@@ -57,6 +46,19 @@
             },
             "headers": {
               "type": "string"
+            }
+          }
+        },
+        "cmsServices": {
+          "type": "object",
+          "properties": {
+            "userManagement": {
+              "type": "object",
+              "properties": {
+                "baseAddress": {
+                  "type": "string"
+                }
+              }
             }
           }
         }

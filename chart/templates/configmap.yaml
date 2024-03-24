@@ -21,5 +21,10 @@ data:
             "Audience": {{ .Values.config.jwt.audience | quote }},
             "Authority": {{ .Values.config.jwt.authority | quote }},
             "RequireHttpsMetadata": {{ .Values.config.jwt.requireHttpsMetadata }}
+        },
+        "CmsServices": {
+            "UserManagement": {
+                "BaseAddress": {{ .Values.config.cmsServices.userManagement.baseAddress | quote }}
+            }
         }
     }

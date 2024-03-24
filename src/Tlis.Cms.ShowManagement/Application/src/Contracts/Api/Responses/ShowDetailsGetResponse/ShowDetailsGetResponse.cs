@@ -13,7 +13,7 @@ public class ShowDetailsGetResponse
 
     public string Description { get; set; } = null!;
 
-    public List<Guid> ModeratorIds { get; set; } = [];
+    public List<ShowDetailsGetResponseModerators> Moderators { get; set; } = [];
 
     public DateOnly CreatedDate { get; set; }
 

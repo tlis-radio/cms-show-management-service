@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/src/Tlis.Cms.ShowManagement.Cli/Tlis.Cms.ShowManagement.Cli.csproj",
+                "${workspaceFolder}/src/Tlis.Cms.ShowManagement.Cli/src/Tlis.Cms.ShowManagement.Cli.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],

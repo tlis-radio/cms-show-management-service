@@ -11,6 +11,7 @@ namespace Tlis.Cms.ShowManagement.Api
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddMemoryCache();
+            builder.Services.AddDistributedMemoryCache();
             builder.Services.AddControllers();
 
             builder.Services.ConfigureProblemDetails();

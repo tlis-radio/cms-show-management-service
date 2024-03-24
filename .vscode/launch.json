@@ -29,9 +29,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build-cli",
-            "program": "${workspaceFolder}/src/Tlis.Cms.ShowManagement.Cli/bin/Debug/net8.0/Tlis.Cms.ShowManagement.Cli.dll",
+            "program": "${workspaceFolder}/src/Tlis.Cms.ShowManagement.Cli/src/bin/Debug/net8.0/Tlis.Cms.ShowManagement.Cli.dll",
             "args": ["migration"],
-            "cwd": "${workspaceFolder}/src/Tlis.Cms.ShowManagement.Cli",
+            "cwd": "${workspaceFolder}/src/Tlis.Cms.ShowManagement.Cli/src",
             "stopAtEntry": false,
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development"

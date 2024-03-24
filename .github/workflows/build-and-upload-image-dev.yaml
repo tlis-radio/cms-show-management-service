@@ -100,4 +100,5 @@ jobs:
         --create-namespace --namespace cms-staging \
         --set config.connectionStrings.postgres="${{ secrets.POSTGRES_CONNECTION_STRING }}" \
         --set config.jwt.audience="${{ secrets.JWT_AUDIENCE }}" \
-        --set config.jwt.authority="${{ secrets.JWT_AUTHORITY }}"
+        --set config.jwt.authority="${{ secrets.JWT_AUTHORITY }}" \
+        --set config.cmsServices.userManagement.baseAddress="${{ secrets.USER_MANAGEMENT_BASE_ADDRESS }}"
