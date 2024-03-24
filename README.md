@@ -17,3 +17,7 @@ dotnet user-secrets set "CmsServices:UserManagement:ClientId" "<value>"
 ```bash
 dotnet user-secrets set "CmsServices:UserManagement:ClientSecret" "<value>"
 ```
+
+```bash
+dotnet user-secrets set "CmsServices:UserManagement:Audience" "<value>"
+```

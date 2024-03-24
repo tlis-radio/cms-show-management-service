@@ -14,7 +14,7 @@ internal class ClientCredentialsClientConfigureOptions(IOptions<CmsServicesConfi
             options.TokenEndpoint = _configuration.UserManagement.TokenEndpoint;
             options.ClientId = _configuration.UserManagement.ClientId;
             options.ClientSecret = _configuration.UserManagement.ClientSecret;
-            options.Parameters.Add("audience", _configuration.UserManagement.BaseAddress);
+            options.Parameters.Add("audience", _configuration.UserManagement.Audience);
         }
     }
 

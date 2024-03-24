@@ -66,6 +66,9 @@
                 },
                 "clientSecret": {
                   "type": "string"
+                },
+                "audience": {
+                  "type": "string"
                 }
               }
             }

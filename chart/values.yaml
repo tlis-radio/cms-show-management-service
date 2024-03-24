@@ -19,3 +19,4 @@ config:
       tokenEndpoint: ""
       clientId: ""
       clientSecret: ""
+      audience: ""

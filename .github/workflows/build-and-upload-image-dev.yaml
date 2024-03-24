@@ -104,4 +104,5 @@ jobs:
         --set config.cmsServices.userManagement.baseAddress="${{ secrets.USER_MANAGEMENT_BASE_ADDRESS }}" \
         --set config.cmsServices.userManagement.tokenEndpoint="${{ secrets.USER_MANAGEMENT_TOKEN_ENDPOINT }}" \
         --set config.cmsServices.userManagement.clientId="${{ secrets.USER_MANAGEMENT_CLIENT_ID }}" \
-        --set config.cmsServices.userManagement.clientSecret="${{ secrets.USER_MANAGEMENT_CLIENT_SECRET }}"
+        --set config.cmsServices.userManagement.clientSecret="${{ secrets.USER_MANAGEMENT_CLIENT_SECRET }}" \
+        --set config.cmsServices.userManagement.audience="${{ secrets.USER_MANAGEMENT_AUDIENCE }}"
