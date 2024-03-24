@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ internal abstract class BaseHttpService
         _configuration = configuration;
         _client = client;
 
-        _client.BaseAddress = _configuration.BaseAddress;
+        _client.BaseAddress = new Uri(_configuration.BaseAddress);
     }
 
     public Task<T?> GetAsync<T>(string requestUri) => _client.GetFromJsonAsync<T>(requestUri);

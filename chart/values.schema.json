@@ -57,6 +57,15 @@
               "properties": {
                 "baseAddress": {
                   "type": "string"
+                },
+                "tokenEndpoint": {
+                  "type": "string"
+                },
+                "clientId": {
+                  "type": "string"
+                },
+                "clientSecret": {
+                  "type": "string"
                 }
               }
             }

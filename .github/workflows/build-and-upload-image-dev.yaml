@@ -101,4 +101,7 @@ jobs:
         --set config.connectionStrings.postgres="${{ secrets.POSTGRES_CONNECTION_STRING }}" \
         --set config.jwt.audience="${{ secrets.JWT_AUDIENCE }}" \
         --set config.jwt.authority="${{ secrets.JWT_AUTHORITY }}" \
-        --set config.cmsServices.userManagement.baseAddress="${{ secrets.USER_MANAGEMENT_BASE_ADDRESS }}"
+        --set config.cmsServices.userManagement.baseAddress="${{ secrets.USER_MANAGEMENT_BASE_ADDRESS }}" \
+        --set config.cmsServices.userManagement.tokenEndpoint="${{ secrets.USER_MANAGEMENT_TOKEN_ENDPOINT }}" \
+        --set config.cmsServices.userManagement.clientId="${{ secrets.USER_MANAGEMENT_CLIENT_ID }}" \
+        --set config.cmsServices.userManagement.clientSecret="${{ secrets.USER_MANAGEMENT_CLIENT_SECRET }}"

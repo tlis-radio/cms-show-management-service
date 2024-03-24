@@ -7,6 +7,8 @@ using Tlis.Cms.ShowManagement.Infrastructure.HttpServices.Interfaces;
 using Tlis.Cms.ShowManagement.Infrastructure.Persistence;
 using Tlis.Cms.ShowManagement.Infrastructure.Persistence.Interfaces;
 using Tlis.Cms.ShowManagement.Infrastructure.Configurations;
+using Microsoft.Extensions.Options;
+using Duende.AccessTokenManagement;
 
 namespace Tlis.Cms.ShowManagement.Infrastructure;
 
@@ -34,15 +36,15 @@ public static class DependencyInjection
             optionsLifetime: ServiceLifetime.Singleton);
         services.AddTransient<IUnitOfWork, UnitOfWork>();
 
-        services
-            .AddClientCredentialsTokenManagement()
-            .AddClient("show_management", client =>
-            {
-                client.TokenEndpoint = "https://tlis.eu.auth0.com/oauth/token";
-                client.ClientId = "JU79zQavUuwjayP8TelP9fDpVztr89Em";
-                client.ClientSecret = "zmSkpMIDhNdthmCFrdmtGFAlmW415F_ptF5NTJm5VErPF4qmmN1uQKdoHk96e0SB";
-                client.Parameters.Add("audience", "https://localhost:7152");
-            });
+        services.AddClientCredentialsTokenManagement();
+        services.AddSingleton<IConfigureOptions<ClientCredentialsClient>, ClientCredentialsClientConfigureOptions>();
+            // .AddClient("show_management", client =>
+            // {
+            //     client.TokenEndpoint = "https://tlis.eu.auth0.com/oauth/token";
+            //     client.ClientId = "JU79zQavUuwjayP8TelP9fDpVztr89Em";
+            //     client.ClientSecret = "zmSkpMIDhNdthmCFrdmtGFAlmW415F_ptF5NTJm5VErPF4qmmN1uQKdoHk96e0SB";
+            //     client.Parameters.Add("audience", "https://localhost:7152");
+            // });
 
         services
             .AddHttpClient<IUserManagementHttpService, UserManagementHttpService>()
