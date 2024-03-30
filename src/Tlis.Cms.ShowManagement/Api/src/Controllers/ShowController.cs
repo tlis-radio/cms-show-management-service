@@ -15,7 +15,7 @@ namespace Tlis.Cms.ShowManagement.Api.Controllers.Base;
 public sealed class ShowController(IMediator mediator) : BaseController(mediator)
 {
     [HttpGet("{id:guid}")]
-    [Authorize(Policy.ShowRead)]
+    [AllowAnonymous]
     [Produces(MediaTypeNames.Application.Json)]
     [ProducesResponseType(typeof(ShowDetailsGetResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]

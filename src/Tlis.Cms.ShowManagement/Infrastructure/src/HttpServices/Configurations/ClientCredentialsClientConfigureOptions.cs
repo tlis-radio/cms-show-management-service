@@ -9,7 +9,7 @@ internal class ClientCredentialsClientConfigureOptions(IOptions<CmsServicesConfi
 
     public void Configure(string? name, ClientCredentialsClient options)
     {
-        if (name == "show_management")
+        if (name == "cms")
         {
             options.TokenEndpoint = _configuration.UserManagement.TokenEndpoint;
             options.ClientId = _configuration.UserManagement.ClientId;

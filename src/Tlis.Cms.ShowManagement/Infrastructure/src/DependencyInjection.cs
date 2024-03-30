@@ -38,17 +38,10 @@ public static class DependencyInjection
 
         services.AddClientCredentialsTokenManagement();
         services.AddSingleton<IConfigureOptions<ClientCredentialsClient>, ClientCredentialsClientConfigureOptions>();
-            // .AddClient("show_management", client =>
-            // {
-            //     client.TokenEndpoint = "https://tlis.eu.auth0.com/oauth/token";
-            //     client.ClientId = "JU79zQavUuwjayP8TelP9fDpVztr89Em";
-            //     client.ClientSecret = "zmSkpMIDhNdthmCFrdmtGFAlmW415F_ptF5NTJm5VErPF4qmmN1uQKdoHk96e0SB";
-            //     client.Parameters.Add("audience", "https://localhost:7152");
-            // });
 
         services
             .AddHttpClient<IUserManagementHttpService, UserManagementHttpService>()
-            .AddClientCredentialsTokenHandler("show_management")
+            .AddClientCredentialsTokenHandler("cms")
             .AddStandardResilienceHandler();
     }
 }
