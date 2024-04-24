@@ -105,4 +105,6 @@ jobs:
         --set config.cmsServices.userManagement.tokenEndpoint="${{ secrets.USER_MANAGEMENT_TOKEN_ENDPOINT }}" \
         --set config.cmsServices.userManagement.clientId="${{ secrets.USER_MANAGEMENT_CLIENT_ID }}" \
         --set config.cmsServices.userManagement.clientSecret="${{ secrets.USER_MANAGEMENT_CLIENT_SECRET }}" \
-        --set config.cmsServices.userManagement.audience="${{ secrets.USER_MANAGEMENT_AUDIENCE }}"
+        --set config.cmsServices.userManagement.audience="${{ secrets.USER_MANAGEMENT_AUDIENCE }}" \
+        --set environment="staging" \
+        --set config.otel.exporterOtlpEndpoint="${{ secrets.OTEL_EXPORTER_OTLP_ENDPOINT }}"

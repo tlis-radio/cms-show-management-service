@@ -1,6 +1,8 @@
 using Npgsql;
 using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
+using OpenTelemetry.ResourceDetectors.Container;
+using OpenTelemetry.ResourceDetectors.Host;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using Tlis.Cms.ShowManagement.Shared;
@@ -13,16 +15,25 @@ public static class OtelSetup
     {
         services
             .AddOpenTelemetry()
-            .ConfigureResource(resource => resource.AddService(Telemetry.ServiceName))
             .WithMetrics(metrics => metrics
+                .SetResourceBuilder(ResourceBuilder.CreateEmpty().AddService(Telemetry.ServiceName))
                 .AddAspNetCoreInstrumentation()
                 .AddHttpClientInstrumentation()
+                .AddMeter("Microsoft.AspNetCore.Hosting")
+                .AddMeter("Microsoft.AspNetCore.Server.Kestrel")
                 .AddOtlpExporter())
             .WithTracing(tracing => tracing
+                .SetResourceBuilder(ResourceBuilder
+                    .CreateEmpty()
+                    .AddService(Telemetry.ServiceName)
+                    .AddDetector(new ContainerResourceDetector())
+                    .AddDetector(new HostDetector()))
+                .SetSampler(new AlwaysOnSampler())
                 .AddAspNetCoreInstrumentation()
                 .AddEntityFrameworkCoreInstrumentation()
                 .AddNpgsql()
                 .AddHttpClientInstrumentation()
+                .AddConsoleExporter()
                 .AddOtlpExporter());
     }
 

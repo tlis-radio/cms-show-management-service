@@ -1,6 +1,9 @@
 {
   "$schema": "https://json-schema.org/draft-07/schema#",
   "properties": {
+    "environment": {
+      "type": "string"
+    },
     "spec": {
       "properties": {
         "replicas": {
@@ -38,13 +41,7 @@
         "otel": {
           "type": "object",
           "properties": {
-            "protocol": {
-              "type": "string"
-            },
-            "endpoint": {
-              "type": "string"
-            },
-            "headers": {
+            "exporterOtlpEndpoint": {
               "type": "string"
             }
           }
