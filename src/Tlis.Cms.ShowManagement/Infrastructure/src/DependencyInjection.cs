@@ -22,18 +22,7 @@ public static class DependencyInjection
             .ValidateDataAnnotations()
             .ValidateOnStart();
 
-        services.AddDbContext<IShowManagementDbContext, ShowManagementDbContext>(options =>
-            {
-                options
-                    .UseNpgsql(
-                        configuration.GetConnectionString("Postgres"),
-                        x => x.MigrationsHistoryTable(
-                            HistoryRepository.DefaultTableName, 
-                            "cms_show_management"))
-                    .UseSnakeCaseNamingConvention();
-            },
-            contextLifetime: ServiceLifetime.Transient,
-            optionsLifetime: ServiceLifetime.Singleton);
+        services.AddDbContext(configuration);
         services.AddTransient<IUnitOfWork, UnitOfWork>();
 
         services.AddClientCredentialsTokenManagement();
@@ -43,5 +32,19 @@ public static class DependencyInjection
             .AddHttpClient<IUserManagementHttpService, UserManagementHttpService>()
             .AddClientCredentialsTokenHandler("cms")
             .AddStandardResilienceHandler();
+    }
+
+    public static void AddDbContext(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddDbContext<IShowManagementDbContext, ShowManagementDbContext>(options =>
+            {
+                options
+                    .UseNpgsql(
+                        configuration.GetConnectionString("Postgres"),
+                        x => x.MigrationsHistoryTable(HistoryRepository.DefaultTableName, ShowManagementDbContext.SCHEMA))
+                    .UseSnakeCaseNamingConvention();
+            },
+            contextLifetime: ServiceLifetime.Transient,
+            optionsLifetime: ServiceLifetime.Singleton);
     }
 }

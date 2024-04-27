@@ -1,12 +1,11 @@
 ﻿using System.CommandLine;
 using System.CommandLine.Builder;
 using System.CommandLine.Parsing;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using Tlis.Cms.ShowManagement.Cli.Commands;
-using Tlis.Cms.ShowManagement.Infrastructure.Persistence;
+using Tlis.Cms.ShowManagement.Infrastructure;
 
 namespace Tlis.Cms.ShowManagement.Cli;
 
@@ -40,7 +39,8 @@ public class Program
         var services = new ServiceCollection();
         var configuration = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile($"appsettings.json")
+            .AddJsonFile($"appsettings.Development.json", optional: true)
+            .AddJsonFile($"appsettings.Production.json", optional: true)
             .Build();
 
         Log.Logger = new LoggerConfiguration().ReadFrom
@@ -52,20 +52,7 @@ public class Program
 
         services.AddSingleton<Command, MigrationCommand>();
 
-        services.AddDbContext<ShowManagementDbContext>(
-            options =>
-            {
-                options
-                    .UseNpgsql(
-                        configuration.GetConnectionString("Postgres"),
-                        x => x.MigrationsHistoryTable(
-                            Microsoft.EntityFrameworkCore.Migrations.HistoryRepository.DefaultTableName, 
-                            "cms_show_management"))
-                    .UseSnakeCaseNamingConvention();
-            },
-            contextLifetime: ServiceLifetime.Transient,
-            optionsLifetime: ServiceLifetime.Singleton
-        );
+        services.AddDbContext(configuration);
 
         return services.BuildServiceProvider();
     }

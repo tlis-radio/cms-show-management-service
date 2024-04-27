@@ -5,9 +5,7 @@ namespace Tlis.Cms.ShowManagement.Api.Extensions;
 
 public static class AuthorizationSetup
 {
-    public static void ConfigureAuthorization(
-        this IServiceCollection services,
-        ConfigurationManager configuration)
+    public static void ConfigureAuthorization(this IServiceCollection services, ConfigurationManager configuration)
     {
         services
             .AddAuthentication(options =>
@@ -23,17 +21,9 @@ public static class AuthorizationSetup
                 options.SaveToken = true;
             });
         
-        services.AddAuthorization(options =>
-        {
-            options.AddPolicy(
-                Policy.ShowWrite,
-                policy => policy.RequireClaim("permissions", "write:show"));
-            options.AddPolicy(
-                Policy.ShowDelete,
-                policy => policy.RequireClaim("permissions", "delete:show"));
-            options.AddPolicy(
-                Policy.ShowRead,
-                policy => policy.RequireClaim("permissions", "read:show"));
-        });
+        services.AddAuthorizationBuilder()
+            .AddPolicy(Policy.ShowWrite, policy => policy.RequireClaim("permissions", "write:show"))
+            .AddPolicy(Policy.ShowDelete, policy => policy.RequireClaim("permissions", "delete:show"))
+            .AddPolicy(Policy.ShowRead, policy => policy.RequireClaim("permissions", "read:show"));
     }
 }

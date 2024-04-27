@@ -5,6 +5,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Tlis.Cms.ShowManagement.Api.Swagger;
 
+// TODO: presunut do nugetu
 public class ProblemDetailsOperationFilter : IOperationFilter
 {
         private static readonly OpenApiObject Status400ProblemDetails = new()
