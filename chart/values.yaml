@@ -13,10 +13,6 @@ config:
     audience: ""
     authority: ""
     requireHttpsMetadata: true
-  otel:
-    protocol: ""
-    endpoint: ""
-    headers: ""
   cmsServices:
     userManagement:
       baseAddress: ""
