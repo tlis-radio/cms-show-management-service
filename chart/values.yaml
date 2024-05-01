@@ -16,7 +16,3 @@ config:
   cmsServices:
     userManagement:
       baseAddress: ""
-      tokenEndpoint: ""
-      clientId: ""
-      clientSecret: ""
-      audience: ""

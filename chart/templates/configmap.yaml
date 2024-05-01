@@ -24,11 +24,7 @@ data:
         },
         "CmsServices": {
             "UserManagement": {
-                "BaseAddress": {{ .Values.config.cmsServices.userManagement.baseAddress | quote }},
-                "TokenEndpoint": {{ .Values.config.cmsServices.userManagement.tokenEndpoint | quote }},
-                "ClientId": {{ .Values.config.cmsServices.userManagement.clientId | quote }},
-                "ClientSecret": {{ .Values.config.cmsServices.userManagement.clientSecret | quote }},
-                "Audience": {{ .Values.config.cmsServices.userManagement.audience | quote }}
+                "BaseAddress": {{ .Values.config.cmsServices.userManagement.baseAddress | quote }}
             }
         }
     }

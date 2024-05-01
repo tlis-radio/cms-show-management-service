@@ -7,8 +7,6 @@ using Tlis.Cms.ShowManagement.Infrastructure.HttpServices.Interfaces;
 using Tlis.Cms.ShowManagement.Infrastructure.Persistence;
 using Tlis.Cms.ShowManagement.Infrastructure.Persistence.Interfaces;
 using Tlis.Cms.ShowManagement.Infrastructure.Configurations;
-using Microsoft.Extensions.Options;
-using Duende.AccessTokenManagement;
 
 namespace Tlis.Cms.ShowManagement.Infrastructure;
 
@@ -25,12 +23,8 @@ public static class DependencyInjection
         services.AddDbContext(configuration);
         services.AddTransient<IUnitOfWork, UnitOfWork>();
 
-        services.AddClientCredentialsTokenManagement();
-        services.AddSingleton<IConfigureOptions<ClientCredentialsClient>, ClientCredentialsClientConfigureOptions>();
-
         services
             .AddHttpClient<IUserManagementHttpService, UserManagementHttpService>()
-            .AddClientCredentialsTokenHandler("cms")
             .AddStandardResilienceHandler();
     }
 

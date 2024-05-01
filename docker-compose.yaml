@@ -12,49 +12,6 @@ services:
     volumes:
       - cms_showmanagement_postgres_data:/var/lib/postgresql/data
 
-  otel-collector:
-    image: otel/opentelemetry-collector-contrib
-    restart: always
-    ports:
-      - 4317:4317 # OTLP gRPC receiver
-    command: --config /etc/otel-collector-config.yaml
-    volumes:
-      - ./configs/otel-collector-config.yaml:/etc/otel-collector-config.yaml
-
-  prometheus:
-    image: prom/prometheus
-    restart: always
-    volumes:
-      - ./configs/prometheus.yml:/etc/prometheus/prometheus.yml
-    ports:
-      - 9090:9090
-
-  grafana:
-    image: grafana/grafana
-    ports:
-      - 3000:3000
-    volumes:
-      - ./configs/grafana-datasources.yml:/etc/grafana/provisioning/datasources/datasources.yaml
-    depends_on:
-      - prometheus
-
-  loki:
-    image: grafana/loki
-    ports:
-      - 3100:3100
-
-  tempo:
-    image: grafana/tempo
-    ports:
-      - "4333:4317"  # otlp grpc
-      - "3200:3200"   # tempo
-    command: [ "-config.file=/etc/tempo.yaml" ]
-    volumes:
-      - ./configs/tempo.yaml:/etc/tempo.yaml
-      - cms_showmanagement_tempo:/tmp/tempo
-
 volumes:
   cms_showmanagement_postgres_data:
-    driver: local
-  cms_showmanagement_tempo:
     driver: local
