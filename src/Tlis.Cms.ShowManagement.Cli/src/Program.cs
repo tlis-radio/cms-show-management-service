@@ -41,6 +41,7 @@ public class Program
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile($"appsettings.Development.json", optional: true)
             .AddJsonFile($"appsettings.Production.json", optional: true)
+            .AddJsonFile($"appsettings.Staging.json", optional: true)
             .Build();
 
         Log.Logger = new LoggerConfiguration().ReadFrom
