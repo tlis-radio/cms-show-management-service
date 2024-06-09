@@ -16,3 +16,5 @@ config:
   cmsServices:
     userManagement:
       baseAddress: ""
+    imageAssetManagement:
+      baseAddress: ""

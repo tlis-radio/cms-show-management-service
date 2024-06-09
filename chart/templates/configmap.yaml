@@ -25,6 +25,9 @@ data:
         "CmsServices": {
             "UserManagement": {
                 "BaseAddress": {{ .Values.config.cmsServices.userManagement.baseAddress | quote }}
+            },
+            "ImageAssetManagement": {
+                "BaseAddress": {{ .Values.config.cmsServices.imageAssetManagement.baseAddress | quote }}
             }
         }
     }

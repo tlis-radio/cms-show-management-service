@@ -56,6 +56,14 @@
                   "type": "string"
                 }
               }
+            },
+            "imageAssetManagement": {
+              "type": "object",
+              "properties": {
+                "baseAddress": {
+                  "type": "string"
+                }
+              }
             }
           }
         }
