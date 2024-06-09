@@ -26,6 +26,9 @@ public static class DependencyInjection
         services
             .AddHttpClient<IUserManagementHttpService, UserManagementHttpService>()
             .AddStandardResilienceHandler();
+        services
+            .AddHttpClient<IImageManagementHttpService, ImageManagementHttpService>()
+            .AddStandardResilienceHandler();
     }
 
     public static void AddDbContext(this IServiceCollection services, IConfiguration configuration)

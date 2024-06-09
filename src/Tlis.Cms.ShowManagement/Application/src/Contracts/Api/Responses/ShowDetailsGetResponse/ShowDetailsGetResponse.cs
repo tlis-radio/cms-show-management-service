@@ -17,5 +17,5 @@ public class ShowDetailsGetResponse
 
     public DateOnly CreatedDate { get; set; }
 
-    public Guid? ProfileImageId { get; set; }
+    public ShowDetailsGetResponseImage? ProfileImage { get; set; }
 }

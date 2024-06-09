@@ -12,6 +12,7 @@ namespace Tlis.Cms.ShowManagement.Application.RequestHandlers;
 internal sealed class ShowDetailsGetRequestHandler(
     IUnitOfWork unitOfWork,
     IUserManagementHttpService userManagementHttpService,
+    IImageManagementHttpService imageManagementHttpService,
     ShowMapper mapper)
     : IRequestHandler<ShowDetailsGetRequest, ShowDetailsGetResponse?>
 {
@@ -26,6 +27,10 @@ internal sealed class ShowDetailsGetRequestHandler(
 
         var userFilterResponse = await userManagementHttpService.FilterUsersAsync(show.ModeratorIds);
 
-        return mapper.ToDto(show, userFilterResponse.Results);
+        var image = show.ProfileImageId.HasValue
+            ? await imageManagementHttpService.GetImageAsync(show.ProfileImageId.Value)
+            : null;
+
+        return mapper.ToDto(show, userFilterResponse.Results, image);
     }
 }

@@ -14,15 +14,14 @@ public partial class ShowMapper
 {
     public partial ShowPaginationGetResponse ToPaginationDto(Show entity);
 
-    public ShowDetailsGetResponse ToDto(Show entity, List<UserDto> Users)
+    public ShowDetailsGetResponse ToDto(Show entity, List<UserDto> Users, ImageDto? image)
     {
-        return new ShowDetailsGetResponse
+        var response = new ShowDetailsGetResponse
         {
             Id = entity.Id,
             Name = entity.Name,
             Description = entity.Description,
             CreatedDate = entity.CreatedDate,
-            ProfileImageId = entity.ProfileImageId,
             Moderators = entity.ModeratorIds.Select(id =>
             {
                 var user = Users.FirstOrDefault(u => u.Id == id)
@@ -35,6 +34,17 @@ public partial class ShowMapper
                 };
             }).ToList()
         };
+
+        if (image != null)
+        {
+            response.ProfileImage = new ShowDetailsGetResponseImage
+            {
+                Id = image.Id,
+                Url = image.Url
+            };
+        }
+
+        return response;
     }
 
     public Show ToEntity(ShowCreateRequest request)
