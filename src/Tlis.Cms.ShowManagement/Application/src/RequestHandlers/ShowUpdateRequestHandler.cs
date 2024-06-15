@@ -18,6 +18,7 @@ internal sealed class UserUpdateRequestHandler(IUnitOfWork unitOfWork)
         }
 
         toUpdate.Name = request.Name;
+        toUpdate.ProfileImageId = request.ProfileImageId;
         toUpdate.Description = request.Description;
 
         toUpdate.ModeratorIds.Clear();
