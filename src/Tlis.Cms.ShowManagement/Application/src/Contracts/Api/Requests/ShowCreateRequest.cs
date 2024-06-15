@@ -15,5 +15,8 @@ public sealed class ShowCreateRequest : IRequest<BaseCreateResponse>
     public string Description { get; set; } = null!;
 
     [JsonRequired]
+    public Guid ProfileImageId { get; set; }
+
+    [JsonRequired]
     public List<Guid> ModeratorIds { get; set; } = [];
 }
