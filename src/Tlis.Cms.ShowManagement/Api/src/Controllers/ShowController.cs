@@ -60,6 +60,20 @@ public sealed class ShowController(IMediator mediator) : BaseController(mediator
         return HandlePut(request);
     }
 
+    [HttpPut("{id:guid}/profile-image")]
+    [Authorize(Policy.ShowWrite)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+    [SwaggerOperation("Update show's details")]
+    public ValueTask<ActionResult> UpdateShowProfileImage([FromRoute] Guid id, [FromBody, Required] ShowUpdateProfileImageRequest request)
+    {
+        request.Id = id;
+
+        return HandlePut(request);
+    }
+
     [HttpDelete("{id:guid}")]
     [Authorize(Policy.ShowDelete)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]

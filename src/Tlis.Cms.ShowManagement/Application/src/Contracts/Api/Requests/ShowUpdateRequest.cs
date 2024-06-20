@@ -17,8 +17,5 @@ public sealed class ShowUpdateRequest : IRequest<bool>
     public string Description { get; set; } = null!;
 
     [JsonRequired]
-    public Guid ProfileImageId { get; set; }
-
-    [JsonRequired]
     public List<Guid> ModeratorIds { get; set; } = [];
 }

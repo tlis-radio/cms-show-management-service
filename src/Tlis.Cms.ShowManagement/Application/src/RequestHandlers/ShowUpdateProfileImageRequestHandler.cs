@@ -6,10 +6,10 @@ using Tlis.Cms.ShowManagement.Infrastructure.Persistence.Interfaces;
 
 namespace Tlis.Cms.ShowManagement.Application.RequestHandlers;
 
-internal sealed class UserUpdateRequestHandler(IUnitOfWork unitOfWork)
-    : IRequestHandler<ShowUpdateRequest, bool>
+internal sealed class ShowUpdateProfileImageRequestHandler(IUnitOfWork unitOfWork)
+    : IRequestHandler<ShowUpdateProfileImageRequest, bool>
 {
-    public async Task<bool> Handle(ShowUpdateRequest request, CancellationToken cancellationToken)
+    public async Task<bool> Handle(ShowUpdateProfileImageRequest request, CancellationToken cancellationToken)
     {
         var toUpdate = await unitOfWork.ShowRepository.GetByIdAsync(request.Id, true);
         if (toUpdate is null)
@@ -17,11 +17,7 @@ internal sealed class UserUpdateRequestHandler(IUnitOfWork unitOfWork)
             return false;
         }
 
-        toUpdate.Name = request.Name;
-        toUpdate.Description = request.Description;
-
-        toUpdate.ModeratorIds.Clear();
-        toUpdate.ModeratorIds.AddRange(request.ModeratorIds);
+        toUpdate.ProfileImageId = request.ProfileImageId;
 
         await unitOfWork.SaveChangesAsync();
 
